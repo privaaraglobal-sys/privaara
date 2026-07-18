@@ -14,7 +14,7 @@ if(fine && dot && ring && glow){
     if(ring) ring.style.transform=`translate(${rx}px,${ry}px) translate(-50%,-50%)`;
     if(glow) glow.style.transform=`translate(${gx}px,${gy}px) translate(-50%,-50%)`;
     requestAnimationFrame(loop);})();
-  document.querySelectorAll('a,button,.svc,.m-item,.magnetic').forEach(el=>{
+  document.querySelectorAll('a,button,.svc,.ind,.tcell,.reg,.magnetic').forEach(el=>{
     el.addEventListener('mouseenter',()=>{ if(ring) ring.classList.add('hover'); });
     el.addEventListener('mouseleave',()=>{ if(ring) ring.classList.remove('hover'); });
   });
@@ -64,45 +64,68 @@ document.querySelectorAll('[data-link]').forEach(a=>{
   });
 });
 
-/* SERVICES DATA */
-const services=[
-  ['Embroidery','Freehand needlework in silk & metal thread.','https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=700&q=80'],
-  ['Sequence','Light-catching sequins laid in flowing motifs.','https://images.unsplash.com/photo-1551048632-24e444b48a3e?auto=format&fit=crop&w=700&q=80'],
-  ['Kardana','Fine cut-metal tubing set entirely by hand.','https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=700&q=80'],
-  ['Hand Print','Block & screen printing in artisanal pigment.','https://images.unsplash.com/photo-1528459801416-a9e53bbf4e17?auto=format&fit=crop&w=700&q=80'],
-  ['Digital Print','Archival pigment for photographic depth.','https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=700&q=80'],
-  ['Beading','Glass, crystal & pearl, counted bead by bead.','https://images.unsplash.com/photo-1591561954557-26941169b49e?auto=format&fit=crop&w=700&q=80'],
-  ['Rhinestone','Precision-set crystal for couture brilliance.','https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=700&q=80'],
-  ['Zardozi','Regal goldwork over raised relief.','https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?auto=format&fit=crop&w=700&q=80'],
+/* PRODUCT CATEGORIES DATA */
+const categories=[
+  ['Pearl Embellishments','Lustrous pearls set by hand into flowing motifs.','https://images.unsplash.com/photo-1591561954557-26941169b49e?auto=format&fit=crop&w=700&q=80'],
+  ['Beadwork','Glass, crystal & seed beads counted bead by bead.','https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=700&q=80'],
+  ['Sequins','Light-catching sequins laid in radiant fields.','https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=700&q=80'],
+  ['Crystal Work','Precision-set crystal for couture brilliance.','https://images.unsplash.com/photo-1561526116-e2460f4d40a8?auto=format&fit=crop&w=700&q=80'],
+  ['Cord Embroidery','Raised cord and soutache worked in relief.','https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=700&q=80'],
+  ['French Lace','Delicate lace grounds embellished by hand.','https://images.unsplash.com/photo-1617137968427-85924c800a22?auto=format&fit=crop&w=700&q=80'],
+  ['Bridal Fabrics','Heirloom surfaces for the couture bridal aisle.','https://images.unsplash.com/photo-1583846783214-7229a91b20ed?auto=format&fit=crop&w=700&q=80'],
+  ['Couture Fabrics','Signature surfaces for runway and atelier.','https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?auto=format&fit=crop&w=700&q=80'],
+  ['Evening Wear Fabrics','Fluid, light-responsive cloth for after dark.','https://images.unsplash.com/photo-1551048632-24e444b48a3e?auto=format&fit=crop&w=700&q=80'],
+  ['Luxury Net Fabrics','Sheer nets grounded with fine embellishment.','https://images.unsplash.com/photo-1528459801416-a9e53bbf4e17?auto=format&fit=crop&w=700&q=80'],
 ];
-const sg=document.querySelector('[data-svc-grid]');
-if(sg){
-  services.forEach((s,i)=>{
+const cg=document.querySelector('[data-cat-grid]');
+if(cg){
+  categories.forEach((s,i)=>{
   const n=String(i+1).padStart(2,'0');
   const d=document.createElement('div');d.className='svc';
-  d.innerHTML=`<img loading="lazy" src="${s[2]}" alt="${s[0]} work"/><span class="border-stitch"></span>
-    <div class="svc-bd"><span class="num">${n} · Atelier</span><h3>${s[0]}</h3><div class="svc-x">${s[1]}</div></div>`;
-  sg.appendChild(d);
+  d.innerHTML=`<img loading="lazy" src="${s[2]}" alt="${s[0]} — luxury surface embellishment"/><span class="border-stitch"></span>
+    <div class="svc-bd"><span class="num">${n} · Collection</span><h3>${s[0]}</h3><div class="svc-x">${s[1]}</div></div>`;
+  cg.appendChild(d);
   });
 }
 
-/* GALLERY DATA (masonry) */
-const gal=[
-  ['https://images.unsplash.com/photo-1617137968427-85924c800a22?auto=format&fit=crop&w=600&q=80','Gold Relief'],
-  ['https://images.unsplash.com/photo-1561526116-e2460f4d40a8?auto=format&fit=crop&w=600&q=80','Crystal Lattice'],
-  ['https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=600&q=80','Silk Bloom'],
-  ['https://images.unsplash.com/photo-1591561954557-26941169b49e?auto=format&fit=crop&w=600&q=80','Pearl Cascade'],
-  ['https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?auto=format&fit=crop&w=600&q=80','Court Zardozi'],
-  ['https://images.unsplash.com/photo-1551048632-24e444b48a3e?auto=format&fit=crop&w=600&q=80','Sequin Field'],
-  ['https://images.unsplash.com/photo-1583846783214-7229a91b20ed?auto=format&fit=crop&w=600&q=80','The Hand'],
-  ['https://images.unsplash.com/photo-1528459801416-a9e53bbf4e17?auto=format&fit=crop&w=600&q=80','Pigment Study'],
-  ['https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=600&q=80','Brilliant Set'],
+/* TRUST & CREDIBILITY DATA */
+const trust=[
+  ['30+','Years Industry Experience','Three decades perfecting luxury surface embellishment.'],
+  ['02','Global Export Network','Delivering to buyers across four continents.'],
+  ['03','Worldwide B2B Supply','A dependable partner for houses and manufacturers.'],
+  ['04','Premium Quality Materials','Real metal, fine crystal and noble fibres only.'],
+  ['05','Experienced Artisan Team','Master karigars carrying generational technique.'],
+  ['06','Custom Surface Development','Bespoke motifs built from a sketch or a word.'],
+  ['07','OEM & Private Label','Discreet production and private-label solutions.'],
 ];
-const mz=document.querySelector('[data-masonry]');
-if(mz){
-  gal.forEach(g=>{const a=document.createElement('a');a.href='#';a.className='m-item';a.setAttribute('data-link','');
-    a.innerHTML=`<img loading="lazy" src="${g[0]}" alt="${g[1]}"/><span class="gl-line"></span><span class="gl-cap">${g[1]}</span>`;
-    mz.appendChild(a);});
+const tg=document.querySelector('[data-trust]');
+if(tg){
+  trust.forEach(t=>{
+    const d=document.createElement('div');d.className='tcell';
+    d.innerHTML=`<div class="tnum">${t[0]}</div><div class="tt">${t[1]}</div><div class="td">${t[2]}</div><span class="tmark"></span>`;
+    tg.appendChild(d);
+  });
+}
+
+/* INDUSTRIES WE SERVE DATA */
+const industries=[
+  ['Fashion Designers','Signature surfaces for seasonal collections.'],
+  ['Couture Houses','Bespoke embellishment for the runway.'],
+  ['Bridal Designers','Heirloom fabrics for the couture bridal aisle.'],
+  ['Apparel Manufacturers','Scaled embellishment for production runs.'],
+  ['Exporters','Reliable supply for international trade.'],
+  ['Wholesalers','Curated volume for luxury distribution.'],
+  ['Retail Brands','Premium finishes for retail lines.'],
+  ['Fashion Labels','Private-label surfaces under your name.'],
+];
+const ig=document.querySelector('[data-industries]');
+if(ig){
+  industries.forEach((s,i)=>{
+    const n=String(i+1).padStart(2,'0');
+    const d=document.createElement('div');d.className='ind';
+    d.innerHTML=`<span class="in">${n}</span><div class="it">${s[0]}</div><div class="id">${s[1]}</div>`;
+    ig.appendChild(d);
+  });
 }
 
 /* REVEALS (IntersectionObserver) */
